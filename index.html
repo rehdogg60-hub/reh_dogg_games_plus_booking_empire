@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reh Dogg Games Plus: Booking Empire</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="titleScreen" class="screen active title-screen">
+      <div class="title-fog"></div>
+      <div class="spotlight spotlight-left"></div>
+      <div class="spotlight spotlight-right"></div>
+      <div class="crowd-dots"></div>
+      <div class="ring-ropes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="title-collage" aria-hidden="true">
+        <img class="collage-img c1" src="images/midnight-bruiser.png" alt="" />
+        <img class="collage-img c2" src="images/iron-duchess.png" alt="" />
+        <img class="collage-img c3" src="images/lady-voltage.png" alt="" />
+        <img class="collage-img c4" src="images/big-harbor-king.png" alt="" />
+      </div>
+
+      <div class="poster-fighter poster-left">
+        <img src="images/super-dragon-fly.png" alt="Super Dragon Fly" />
+      </div>
+      <div class="poster-fighter poster-right">
+        <img src="images/queen-viper.png" alt="Queen Viper" />
+      </div>
+
+      <div class="hero-panel cover-panel">
+        <p class="brand">Reh Dogg Games Plus Presents</p>
+        <h1><span>Booking</span> Empire</h1>
+        <p class="tagline">Book the feud. Build the heat. Don't get fired.</p>
+        <div class="money-card">
+          Starting Company Money
+          <strong>$100,000</strong>
+        </div>
+        <div class="title-actions">
+          <button id="startBtn" class="primary">Start Booking</button>
+          <button id="soundBtn" type="button">Sound On</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="rosterScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Reh Dogg Games Plus</p>
+          <h2>Roster</h2>
+        </div>
+        <div class="bank">Company Money <strong id="rosterMoney">$100,000</strong></div>
+      </header>
+      <p class="hint">Select exactly two wrestlers to create your next profitable feud.</p>
+      <div id="rosterGrid" class="roster-grid"></div>
+      <div class="bottom-actions">
+        <span id="selectedCount">0 / 2 selected</span>
+        <button id="toFeudBtn" class="primary" disabled>Set Up Feud</button>
+      </div>
+    </section>
+
+    <section id="feudScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Feud Setup</p>
+          <h2 id="feudPairTitle">Choose the story</h2>
+        </div>
+        <button id="backRosterBtn">Back</button>
+      </header>
+      <div class="setup-grid">
+        <label>Feud Type
+          <select id="feudType"></select>
+        </label>
+        <label>Angle Style
+          <select id="angleStyle"></select>
+        </label>
+        <label>Feud Length
+          <select id="feudLength"></select>
+        </label>
+        <label>Ending
+          <select id="ending"></select>
+        </label>
+      </div>
+      <div id="feudPreview" class="preview-card"></div>
+      <button id="createFeudBtn" class="primary">Create Feud</button>
+    </section>
+
+    <section id="bookingScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Weekly Booking</p>
+          <h2 id="bookingTitle">Feud Name</h2>
+        </div>
+        <div class="bank">Money <strong id="bookingMoney">$100,000</strong></div>
+      </header>
+
+      <div class="status-grid">
+        <div class="status-card"><span>Week</span><strong id="weekText">1 / 4</strong></div>
+        <div class="status-card"><span>Heat</span><div class="bar"><b id="heatBar"></b></div><strong id="heatText">0</strong></div>
+        <div class="status-card"><span>Risk</span><div class="bar risk"><b id="riskBar"></b></div><strong id="riskText">0</strong></div>
+      </div>
+
+      <div class="story-card">
+        <p id="planText"></p>
+        <div id="moraleBox" class="morale-box"></div>
+      </div>
+
+      <h3>Choose This Week's Angle</h3>
+      <div id="weeklyAngles" class="angle-grid"></div>
+      <button id="runWeekBtn" class="primary" disabled>Run Week</button>
+    </section>
+
+    <section id="resultsScreen" class="screen">
+      <div class="result-panel">
+        <p class="brand">Results</p>
+        <h2 id="resultTitle">Week Complete</h2>
+        <p id="kayfabeText" class="kayfabe"></p>
+        <div id="resultStats" class="result-stats"></div>
+        <p id="commentaryText" class="commentary"></p>
+        <button id="continueBtn" class="primary">Continue</button>
+      </div>
+    </section>
+
+    <section id="finalReportScreen" class="screen">
+      <div class="result-panel">
+        <p class="brand">Final Feud Report</p>
+        <h2 id="finalTitle">Payoff Complete</h2>
+        <div id="finalReport" class="final-report"></div>
+        <button id="newFeudBtn" class="primary">Return to Roster</button>
+      </div>
+    </section>
+
+    <section id="gameOverScreen" class="screen">
+      <div class="result-panel danger">
+        <p class="brand">Board Decision</p>
+        <h2>You were fired by the board of directors.</h2>
+        <p>Your company money hit $0. The empire collapsed under bad booking.</p>
+        <button id="restartBtn" class="primary">Start Over</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
