@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reh Dogg Games Plus: Booking Empire</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="arena-atmosphere" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div id="screenTransition" class="screen-transition" aria-hidden="true"></div>
+  <main class="app">
+    <section id="titleScreen" class="screen active title-screen">
+      <div class="title-fog"></div>
+      <div class="spotlight spotlight-left"></div>
+      <div class="spotlight spotlight-right"></div>
+      <div class="crowd-dots"></div>
+      <div class="ring-ropes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="title-collage" aria-hidden="true">
+        <img class="collage-img c1" src="images/midnight-bruiser.png" alt="" />
+        <img class="collage-img c2" src="images/iron-duchess.png" alt="" />
+        <img class="collage-img c3" src="images/lady-voltage.png" alt="" />
+        <img class="collage-img c4" src="images/big-harbor-king.png" alt="" />
+      </div>
+
+      <div class="poster-fighter poster-left">
+        <img src="images/super-dragon-fly.png" alt="Super Dragon Fly" />
+      </div>
+      <div class="poster-fighter poster-right">
+        <img src="images/queen-viper.png" alt="Queen Viper" />
+      </div>
+
+      <div class="hero-panel cover-panel">
+        <p class="brand">Reh Dogg Games Plus Presents</p>
+        <h1><span>Booking</span> Empire</h1>
+        <p class="tagline">Book the feud. Build the heat. Don't get fired.</p>
+        <div class="money-card">
+          Starting Company Money
+          <strong>$100,000</strong>
+        </div>
+        <div class="title-actions">
+          <button id="startBtn" class="primary">Start Booking</button>
+          <button id="newsBtn" type="button">News</button>
+          <button id="creativeTeamBtn" type="button">Creative Team</button>
+          <button id="merchSponsorsBtn" type="button">Merch & Sponsors</button>
+          <button id="rankingsBtn" type="button">Rankings</button>
+          <button id="tagTeamsBtn" type="button">Tag Teams</button>
+          <button id="audienceBtn" type="button">Audience Analytics</button>
+          <button id="chaosBtn" type="button">Chaos Desk</button>
+          <button id="helpBtn" type="button">Help / How to Play</button>
+          <button id="bookerOfficeBtn" type="button">Booker Office</button>
+          <button id="championshipsBtn" type="button">Championships</button>
+          <button id="contractsBtn" type="button">Contracts</button>
+          <button id="legendsBtn" type="button">Hall of Fame / Legacy</button>
+          <button id="continueSaveBtn" type="button">Continue Booking</button>
+          <button id="deleteSaveBtn" type="button">Delete Save</button>
+          <button id="soundBtn" type="button">Sound On</button>
+        </div>
+        <p id="saveMessage" class="save-message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="chaosScreen" class="screen chaos-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Emergency Desk</p>
+          <h2>Chaos & Crisis</h2>
+        </div>
+        <button id="backTitleFromChaosBtn">Main Menu</button>
+      </header>
+      <div class="ranking-summary">
+        <div><span>Chaos Meter</span><strong id="chaosMeterText">0</strong></div>
+        <div><span>Active Crisis</span><strong id="activeCrisisText">None</strong></div>
+        <div><span>Controversies</span><strong id="chaosHistoryCount">0</strong></div>
+      </div>
+      <div id="chaosAlertPanel" class="chaos-alert-panel"></div>
+      <div class="audience-trends">
+        <h3>Recent Disasters & Opportunities</h3>
+        <div id="chaosHistoryList" class="news-list"></div>
+      </div>
+    </section>
+
+    <section id="audienceScreen" class="screen audience-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Fan Research Desk</p>
+          <h2>Audience Analytics</h2>
+        </div>
+        <button id="backTitleFromAudienceBtn">Main Menu</button>
+      </header>
+      <div class="ranking-summary">
+        <div><span>Total Fanbase</span><strong id="audienceTotalText">0</strong></div>
+        <div><span>Hottest Audience</span><strong id="audienceHotText">Loading...</strong></div>
+        <div><span>Ticket Impact</span><strong id="audienceTicketText">0%</strong></div>
+      </div>
+      <div id="audienceGrid" class="audience-grid"></div>
+      <div class="audience-trends">
+        <h3>Fan Complaints & Trends</h3>
+        <div id="audienceTrendsList" class="news-list"></div>
+      </div>
+    </section>
+
+    <section id="tagTeamsScreen" class="screen tag-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Tag Division</p>
+          <h2>Tag Teams</h2>
+        </div>
+        <button id="backTitleFromTagsBtn">Main Menu</button>
+      </header>
+      <div class="tag-create-panel">
+        <label>Team Name
+          <input id="tagTeamName" type="text" placeholder="Enter team name" />
+        </label>
+        <label>Partner 1
+          <select id="tagPartnerA"></select>
+        </label>
+        <label>Partner 2
+          <select id="tagPartnerB"></select>
+        </label>
+        <label>Alignment
+          <select id="tagAlignment">
+            <option>Face</option>
+            <option>Heel</option>
+            <option>Mixed</option>
+          </select>
+        </label>
+        <button id="createTagTeamBtn" class="primary" type="button">Create Official Team</button>
+      </div>
+      <div class="ranking-summary">
+        <div><span>Tag Champions</span><strong id="tagChampionsText">Loading...</strong></div>
+        <div><span>#1 Contender</span><strong id="tagContenderText">Loading...</strong></div>
+        <div><span>Division Heat</span><strong id="tagDivisionHeatText">0</strong></div>
+      </div>
+      <div id="tagTeamsGrid" class="tag-grid"></div>
+    </section>
+
+    <section id="rankingsScreen" class="screen rankings-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Sports Desk</p>
+          <h2>Power Rankings</h2>
+        </div>
+        <button id="backTitleFromRankingsBtn">Main Menu</button>
+      </header>
+      <div class="ranking-summary">
+        <div><span>World Title Recommendation</span><strong id="worldContenderText">Loading...</strong></div>
+        <div><span>Women’s Title Recommendation</span><strong id="womensContenderText">Loading...</strong></div>
+        <div><span>Hardcore Recommendation</span><strong id="hardcoreContenderText">Loading...</strong></div>
+      </div>
+      <div id="rankingsGrid" class="rankings-grid"></div>
+    </section>
+
+    <section id="merchSponsorsScreen" class="screen merch-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Neon Merch Table</p>
+          <h2>Merch & Sponsors</h2>
+        </div>
+        <div class="topbar-actions">
+          <div class="bank">Weekly Merch <strong id="weeklyMerchText">$0</strong></div>
+          <button id="backTitleFromMerchBtn">Main Menu</button>
+        </div>
+      </header>
+      <div class="merch-dashboard">
+        <div class="merch-stat">
+          <span>Top Merch Seller</span>
+          <strong id="topMerchSellerText">None yet</strong>
+        </div>
+        <div class="merch-stat">
+          <span>Active Sponsor</span>
+          <strong id="activeSponsorText">No active sponsor</strong>
+        </div>
+        <div class="merch-stat">
+          <span>Satisfaction</span>
+          <strong id="sponsorSatisfactionText">0</strong>
+        </div>
+        <div class="merch-stat">
+          <span>Payout</span>
+          <strong id="sponsorPayoutText">$0</strong>
+        </div>
+      </div>
+      <div id="sponsorWarningText" class="breaking-banner">No sponsor warnings.</div>
+      <h3>Current Sponsor Offers</h3>
+      <div id="sponsorOffersGrid" class="sponsor-grid"></div>
+      <h3>Merch Sellers</h3>
+      <div id="merchGrid" class="merch-grid"></div>
+    </section>
+
+    <section id="helpScreen" class="screen help-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Booker Training</p>
+          <h2>How to Play</h2>
+        </div>
+        <button id="backTitleFromHelpBtn">Main Menu</button>
+      </header>
+      <div class="help-grid">
+        <article class="help-card beginner-card">
+          <span>Beginner Strategy</span>
+          <h3>Start with a Face vs Heel feud.</h3>
+          <p>Keep risk low, build heat weekly, then pay it off at PPV.</p>
+        </article>
+        <article class="help-card">
+          <span>Money</span>
+          <p>Weekly revenue comes from heat, ratings, title prestige, and buzz. Payroll, risk, low morale, and event costs can turn a hot idea into a loss.</p>
+        </article>
+        <article class="help-card">
+          <span>Heat / Risk / Morale</span>
+          <p>Heat sells tickets. Risk creates danger. Morale keeps wrestlers loyal and willing to follow your booking.</p>
+        </article>
+        <article class="help-card">
+          <span>Fired Conditions</span>
+          <p>You are fired if company money reaches $0 or your job security hits 0.</p>
+        </article>
+        <article class="help-card">
+          <span>Titles & PPV</span>
+          <p>Title feuds raise stakes, but bad title booking hurts prestige. Every 4 weeks, build toward a major PPV event.</p>
+        </article>
+        <article class="help-card">
+          <span>Rivals & Contracts</span>
+          <p>Rival promotions can poach unhappy talent. Salaries keep stars loyal, but high payroll drains your company.</p>
+        </article>
+      </div>
+      <div class="bottom-actions">
+        <button id="restartTutorialBtn" class="primary" type="button">Start Guided Tutorial</button>
+      </div>
+    </section>
+
+    <section id="creativeTeamScreen" class="screen creative-team-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Booking War Room</p>
+          <h2>Creative Team</h2>
+        </div>
+        <div class="topbar-actions">
+          <button id="refreshAdviceBtn" type="button">Refresh Advice</button>
+          <button id="backFromCreativeBtn" type="button">Back</button>
+        </div>
+      </header>
+      <div class="creative-hero">
+        <div>
+          <p class="brand">Advisor Monitor Wall</p>
+          <h3>Strategy without handcuffs.</h3>
+          <p>Four advisors scan ratings, morale, stories, and risk. You still make the final call.</p>
+        </div>
+        <div class="creative-status">
+          <span>Current Focus</span>
+          <strong id="creativeFocusText">Company Strategy</strong>
+        </div>
+      </div>
+      <div id="advisorGrid" class="advisor-grid"></div>
+    </section>
+
+    <section id="bookerOfficeScreen" class="screen booker-office-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Neon Executive Office</p>
+          <h2>Booker Office</h2>
+        </div>
+        <button id="backTitleFromBookerBtn">Main Menu</button>
+      </header>
+      <div class="office-hero">
+        <div>
+          <p class="brand">Head Booker Dashboard</p>
+          <h3 id="bookerNameText">Head Booker</h3>
+          <p id="bookerOfficeWarning" class="office-warning">The board is watching every dollar and every feud.</p>
+        </div>
+        <div class="office-pay">
+          <span>Total Salary Earned</span>
+          <strong id="bookerSalaryText">$0</strong>
+        </div>
+      </div>
+      <div id="bookerOfficeGrid" class="office-grid"></div>
+    </section>
+
+    <section id="championshipsScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Arcade Trophy Room</p>
+          <h2>Championships</h2>
+        </div>
+        <button id="backTitleFromBeltsBtn">Main Menu</button>
+      </header>
+      <p class="hint">Build title prestige with great feuds. Cold belts cost money. Legendary belts sell tickets.</p>
+      <div id="championshipGrid" class="championship-grid"></div>
+    </section>
+
+    <section id="newsScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Broadcast Desk</p>
+          <h2>News Feed</h2>
+        </div>
+        <button id="backTitleFromNewsBtn">Main Menu</button>
+      </header>
+      <div class="breaking-banner">Breaking stories, rival rumors, sponsor pressure, and fan campaigns from the RDGP universe.</div>
+      <div id="newsList" class="news-list"></div>
+    </section>
+
+    <section id="contractsScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Neon Business Office</p>
+          <h2>Contracts & Salaries</h2>
+        </div>
+        <div class="topbar-actions">
+          <div class="bank">Company Money <strong id="contractsMoney">$100,000</strong></div>
+          <button id="backTitleFromContractsBtn">Back</button>
+        </div>
+      </header>
+      <div class="contract-summary">
+        <div><span>Weekly Payroll</span><strong id="weeklyPayrollText">$0</strong></div>
+        <div><span>At Risk</span><strong id="atRiskText">0</strong></div>
+        <div><span>Average Loyalty</span><strong id="avgLoyaltyText">0</strong></div>
+      </div>
+      <div id="contractsGrid" class="contracts-grid"></div>
+    </section>
+
+    <section id="legendsScreen" class="screen legacy-screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">RDGP Neon Trophy Museum</p>
+          <h2>Hall of Fame / Legacy</h2>
+        </div>
+        <button id="backTitleFromLegendsBtn">Main Menu</button>
+      </header>
+      <p class="hint">Track legendary careers, historic feuds, title reigns, chaotic moments, PPV records, and your booker legacy.</p>
+      <div class="ranking-summary">
+        <div><span>Weeks Survived</span><strong id="legacyWeeksText">0</strong></div>
+        <div><span>Total Revenue</span><strong id="legacyRevenueText">$0</strong></div>
+        <div><span>Booker Grade</span><strong id="legacyBookerGradeText">C</strong></div>
+      </div>
+      <div id="legacyMilestones" class="legacy-banner-grid"></div>
+      <h3 class="museum-heading">Hall of Fame Inductees</h3>
+      <div id="legendsGrid" class="legacy-grid"></div>
+      <h3 class="museum-heading">Living Legacy Rankings</h3>
+      <div id="legacyRosterGrid" class="legacy-grid"></div>
+      <h3 class="museum-heading">Historic Company Records</h3>
+      <div id="legacyRecordsGrid" class="legacy-grid"></div>
+    </section>
+
+    <section id="rosterScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Reh Dogg Games Plus</p>
+          <h2>Roster</h2>
+        </div>
+        <div class="bank">Company Money <strong id="rosterMoney">$100,000</strong></div>
+      </header>
+      <div class="hype-panel">
+        <span>Monthly Pay-Per-View Hype</span>
+        <strong id="ppvHypeText">0</strong>
+        <small id="ppvBestText">No completed rivalries yet.</small>
+        <small id="ppvCalendarText">4 weeks until the next big event.</small>
+        <button id="bookPpvBtn" type="button">Book Big Event</button>
+      </div>
+      <div class="news-ticker"><span id="newsTickerText">RDGP front office is watching the ratings war.</span></div>
+      <p class="hint">Select exactly two wrestlers to create your next profitable feud.</p>
+      <div id="rosterGrid" class="roster-grid"></div>
+      <div class="bottom-actions">
+        <span id="selectedCount">0 / 2 selected</span>
+        <button id="toFeudBtn" class="primary" disabled>Set Up Feud</button>
+      </div>
+    </section>
+
+    <section id="feudScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Feud Setup</p>
+          <h2 id="feudPairTitle">Choose the story</h2>
+        </div>
+        <button id="backRosterBtn">Back</button>
+      </header>
+      <div class="setup-grid">
+        <label>Feud Type
+          <select id="feudType"></select>
+        </label>
+        <label>Angle Style
+          <select id="angleStyle"></select>
+        </label>
+        <label>Feud Length
+          <select id="feudLength"></select>
+        </label>
+        <label>Ending
+          <select id="ending"></select>
+        </label>
+        <label class="title-feud-toggle" id="titleFeudPanel">
+          <input id="titleFeud" type="checkbox" />
+          <span class="mini-belt" aria-hidden="true"></span>
+          <span>
+            <strong>Title Feud</strong>
+            <small id="titleFeudHint">Put championship gold on the line.</small>
+          </span>
+        </label>
+        <label id="titleSelectWrap" class="title-select-wrap">Championship
+          <select id="titleSelect"></select>
+        </label>
+      </div>
+      <div id="feudPreview" class="preview-card"></div>
+      <button id="createFeudBtn" class="primary">Create Feud</button>
+    </section>
+
+    <section id="bookingScreen" class="screen">
+      <header class="topbar">
+        <div>
+          <p class="brand">Weekly Booking</p>
+          <h2 id="bookingTitle">Feud Name</h2>
+        </div>
+        <div class="bank">Money <strong id="bookingMoney">$100,000</strong></div>
+      </header>
+
+      <div class="status-grid">
+        <div class="status-card"><span>Week</span><strong id="weekText">1 / 4</strong></div>
+        <div class="status-card"><span>Heat</span><div class="bar"><b id="heatBar"></b></div><strong id="heatText">0</strong></div>
+        <div class="status-card"><span>Risk</span><div class="bar risk"><b id="riskBar"></b></div><strong id="riskText">0</strong></div>
+      </div>
+
+      <div class="story-card">
+        <p id="planText"></p>
+        <div id="moraleBox" class="morale-box"></div>
+      </div>
+
+      <h3>Choose This Week's Angle</h3>
+      <div id="weeklyAngles" class="angle-grid"></div>
+      <h3>Choose TV Segment</h3>
+      <div id="weeklySegments" class="segment-grid"></div>
+      <div class="bottom-actions">
+        <button id="bookingCreativeBtn" type="button">Creative Team</button>
+        <button id="runWeekBtn" class="primary" disabled>Run Week</button>
+      </div>
+    </section>
+
+    <section id="resultsScreen" class="screen">
+      <div id="broadcastPanel" class="result-panel broadcast-panel">
+        <p id="showNameText" class="show-logo">Slam Night</p>
+        <h2 id="resultTitle">Week Complete</h2>
+        <div class="main-event-card">
+          <span>Main Event Graphic</span>
+          <strong id="mainEventText">Wrestler A vs Wrestler B</strong>
+        </div>
+        <p id="kayfabeText" class="kayfabe"></p>
+        <div class="tv-grid">
+          <div class="tv-meter reaction-meter">
+            <span>Crowd Reaction</span>
+            <strong id="crowdReactionText">Good Reaction</strong>
+            <div class="bar heat"><b id="crowdBar"></b></div>
+          </div>
+          <div class="tv-meter">
+            <span>Segment Rating</span>
+            <strong id="ratingText">0.0 Stars</strong>
+            <div id="starReveal" class="stars"></div>
+          </div>
+          <div class="tv-meter">
+            <span>Heat</span>
+            <div class="bar heat"><b id="resultHeatBar"></b></div>
+            <strong id="resultHeatText">0</strong>
+          </div>
+          <div class="tv-meter">
+            <span>Risk</span>
+            <div class="bar risk"><b id="resultRiskBar"></b></div>
+            <strong id="resultRiskText">0</strong>
+          </div>
+        </div>
+        <div id="resultStats" class="result-stats"></div>
+        <div id="segmentPanel" class="segment-panel"></div>
+        <div id="eventPanel" class="event-panel"></div>
+        <div id="rankingPanel" class="ranking-panel"></div>
+        <div id="chaosPanel" class="chaos-panel"></div>
+        <div id="audiencePanel" class="audience-panel"></div>
+        <div id="worldEventsPanel" class="world-events-panel"></div>
+        <div id="rivalPanel" class="rival-panel"></div>
+        <div id="poachPanel" class="poach-panel"></div>
+        <p id="commentaryText" class="commentary tv-commentary"></p>
+        <button id="continueBtn" class="primary">Continue</button>
+      </div>
+    </section>
+
+    <section id="finalReportScreen" class="screen">
+      <div class="result-panel">
+        <p class="brand">Final Feud Report</p>
+        <h2 id="finalTitle">Payoff Complete</h2>
+        <div id="finalReport" class="final-report"></div>
+        <button id="newFeudBtn" class="primary">Return to Roster</button>
+      </div>
+    </section>
+
+    <section id="ppvBookingScreen" class="screen">
+      <div class="result-panel ppv-arena">
+        <p class="brand">Reh Dogg Games Plus Big Event</p>
+        <h2 id="ppvBookingTitle" class="ppv-logo">Empire Clash</h2>
+        <p id="ppvBookingSub" class="kayfabe">Monthly payoff card loading under the gold lights.</p>
+        <div class="ppv-overview">
+          <div><span>Current Week</span><strong id="ppvWeekText">1</strong></div>
+          <div><span>PPV Hype</span><strong id="ppvBookingHype">0</strong></div>
+          <div><span>Rival Pressure</span><strong id="ppvRivalPressure">0</strong></div>
+          <div><span>Expected Revenue</span><strong id="ppvExpectedRevenue">$0</strong></div>
+        </div>
+        <div id="ppvCardSlots" class="ppv-card-grid"></div>
+        <div class="bottom-actions ppv-actions">
+          <button id="backRosterFromPpvBtn" type="button">Back to Roster</button>
+          <button id="runPpvBtn" class="primary" type="button">Run Big Event</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="ppvResultsScreen" class="screen">
+      <div class="result-panel ppv-arena ppv-results">
+        <div class="fireworks" aria-hidden="true"></div>
+        <p class="brand">Big Event Results</p>
+        <h2 id="ppvResultTitle" class="ppv-logo">Empire Clash</h2>
+        <p id="ppvResultSummary" class="kayfabe"></p>
+        <div id="ppvResultList" class="ppv-result-list"></div>
+        <div id="ppvBusinessSummary" class="final-report"></div>
+        <div class="bottom-actions ppv-actions">
+          <button id="ppvBackRosterBtn" type="button">Return to Roster</button>
+          <button id="nextMonthBtn" class="primary" type="button">Next Month</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="boardReviewScreen" class="screen">
+      <div class="result-panel board-room">
+        <p class="brand">RDGP Board Review</p>
+        <h2 id="boardReviewTitle">Four-Week Performance Review</h2>
+        <p id="boardReviewMessage" class="kayfabe"></p>
+        <div id="boardReviewStats" class="final-report"></div>
+        <button id="continueBoardBtn" class="primary">Continue Booking</button>
+      </div>
+    </section>
+
+    <section id="gameOverScreen" class="screen">
+      <div class="result-panel danger">
+        <p class="brand">Board Decision</p>
+        <h2 id="gameOverTitle">You were fired as Head Booker of RDGP.</h2>
+        <p id="gameOverReason">The empire collapsed under bad booking.</p>
+        <div id="firedReport" class="final-report"></div>
+        <button id="restartBtn" class="primary">Start Over</button>
+      </div>
+    </section>
+
+    <div id="tutorialPrompt" class="tutorial-prompt" hidden>
+      <div class="tutorial-prompt-card">
+        <p class="brand">First-Time Booker</p>
+        <h2>Start Guided Booking Tutorial?</h2>
+        <p>Learn the basics with short coach tips. You can skip it and use Help any time.</p>
+        <div class="title-actions">
+          <button id="startTutorialBtn" class="primary" type="button">Yes, Teach Me</button>
+          <button id="skipTutorialBtn" type="button">Skip Tutorial</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tutorialOverlay" class="tutorial-overlay" hidden>
+      <div id="tutorialTip" class="tutorial-tip">
+        <p id="tutorialStepText" class="brand">Tip 1 / 8</p>
+        <h3 id="tutorialTipTitle">Booker Office</h3>
+        <p id="tutorialTipText">You are paid by commission. Make money or get fired.</p>
+        <div class="tutorial-actions">
+          <button id="tutorialNextBtn" class="primary" type="button">Next Tip</button>
+          <button id="tutorialDoneBtn" type="button">Got It</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="finisherModal" class="finisher-modal" hidden>
+      <div class="finisher-modal-card" role="dialog" aria-modal="true" aria-labelledby="finisherModalTitle">
+        <button id="closeFinisherModal" class="modal-close" type="button" aria-label="Close finisher preview">×</button>
+        <p id="finisherModalName" class="brand">Finisher Preview</p>
+        <h2 id="finisherModalTitle">Finisher</h2>
+        <div id="finisherModalMedia" class="finisher-modal-media"></div>
+        <p id="finisherModalFallback" class="finisher-modal-fallback" hidden>Animated preview placeholder active until this clip is added.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
